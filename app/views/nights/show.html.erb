@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'count' %>
+
+<p>
+  <strong>Status:</strong>
+  <%= @night.status %>
+</p>
+
+<%= form_for(@night) do |f| %>
+  <%= f.select( :status, options_for_select([["Admit All"],["Girls Only"],["Fire Fighters"],["Cops"]])) %><br>
+  <%= f.submit 'Update Status' %>
+<% end %>
+
+<%= button_to 'Enter', "/nights/#{@night.id}/up", method: :patch, remote: true, id: 'enter' %>
+<%= button_to 'Leave', "/nights/#{@night.id}/down", method: :patch %>
+<%= link_to 'Back', nights_path %>
